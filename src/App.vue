@@ -1,5 +1,5 @@
 <template>
-  <!-- <EnvelopeIntro /> -->
+  <EnvelopeIntro />
   <main class="wedding-page">
     <HeaderSection />
     <HeroSection />
