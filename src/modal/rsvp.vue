@@ -27,10 +27,10 @@
 
             <p class="modal-label">RSVP</p>
 
-            <h3>Спасибо, что отправили!</h3>
+            <h3>{{ t.successTitle }}</h3>
 
             <p class="modal-desc">
-              Ваш ответ успешно сохранён.
+              {{ t.successDesc }}
             </p>
           </div>
 

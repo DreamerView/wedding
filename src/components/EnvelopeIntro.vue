@@ -45,32 +45,66 @@ const hideEnvelope = ref(false)
 const musicSrc = '/wedding.mp3'
 
 let audio = null
+let fadeTimer = null
 let letterTimer = null
 let envelopeTimer = null
 let hideTimer = null
 
-const playMusic = async () => {
-  try {
-    if (!audio) {
-      audio = new Audio(musicSrc)
-      audio.loop = true
-      audio.volume = 0.65
-      audio.preload = 'auto'
-    }
+const createAudio = () => {
+  if (audio) return audio
 
-    audio.currentTime = 0
-    await audio.play()
-  } catch (error) {
-    console.log('Audio play blocked:', error)
-  }
+  audio = new Audio()
+  audio.src = musicSrc
+  audio.loop = true
+  audio.volume = 0
+  audio.preload = 'metadata'
+
+  audio.addEventListener('error', () => {
+    console.log('Music loading error')
+  })
+
+  return audio
 }
 
-const openEnvelope = async () => {
+const fadeInMusic = () => {
+  if (!audio) return
+
+  clearInterval(fadeTimer)
+
+  fadeTimer = setInterval(() => {
+    if (!audio) {
+      clearInterval(fadeTimer)
+      return
+    }
+
+    const nextVolume = Math.min(audio.volume + 0.04, 0.45)
+    audio.volume = nextVolume
+
+    if (nextVolume >= 0.45) {
+      clearInterval(fadeTimer)
+    }
+  }, 120)
+}
+
+const playMusicInBackground = () => {
+  const player = createAudio()
+
+  player.play()
+    .then(() => {
+      fadeInMusic()
+    })
+    .catch((error) => {
+      console.log('Audio play blocked or delayed:', error)
+    })
+}
+
+const openEnvelope = () => {
   if (isOpened.value) return
 
   isOpened.value = true
 
-  await playMusic()
+  // Музыка запускается отдельно и не блокирует анимацию
+  playMusicInBackground()
 
   letterTimer = setTimeout(() => {
     showLetter.value = true
@@ -89,15 +123,16 @@ onBeforeUnmount(() => {
   if (letterTimer) clearTimeout(letterTimer)
   if (envelopeTimer) clearTimeout(envelopeTimer)
   if (hideTimer) clearTimeout(hideTimer)
+  if (fadeTimer) clearInterval(fadeTimer)
 
   /*
-    Если хочешь, чтобы музыка продолжала играть даже если компонент удалится,
-    удали этот блок.
+    Если музыка должна продолжать играть после исчезновения интро —
+    НЕ очищай audio здесь.
   */
-  if (audio) {
-    audio.pause()
-    audio = null
-  }
+  // if (audio) {
+  //   audio.pause()
+  //   audio = null
+  // }
 })
 </script>
 

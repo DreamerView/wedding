@@ -42,7 +42,7 @@
         data-aos-duration="1000"
         data-aos-delay="650"
       >
-        <img height="25" width="auto" src="/logo.png" />
+        <img height="25" width="auto" loading="lazy" src="/logo.png" />
       </a>
 
       <div class="nav-right">

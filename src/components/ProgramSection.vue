@@ -6,7 +6,15 @@
     data-aos-duration="1200"
     data-aos-offset="140"
   >
-    <div class="program-bg"></div>
+    <div class="program-bg">
+      <img
+        src="/poster-light.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
     <div class="program-overlay"></div>
 
     <div class="program-content">
@@ -73,13 +81,18 @@ const t = computed(() => {
 .program-bg {
   position: absolute;
   inset: 0;
-  background-image: url('/poster-light.png');
-  background-size: cover;
-  background-position: center bottom;
+  z-index: -3;
+  overflow: hidden;
+}
+
+.program-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
   filter: blur(1px);
   opacity: 0.9;
   transform: scale(1.04);
-  z-index: -3;
   animation: bgReveal 2.8s ease forwards;
 }
 
