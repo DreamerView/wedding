@@ -5,54 +5,41 @@
       data-aos-duration="1000"
       data-aos-offset="120"
     >
-      ДЕТАЛИ
+      {{ t.title }}
     </h2>
 
     <div class="details-grid">
       <div
+        v-for="(item, index) in t.items"
+        :key="item.title"
         class="detail-card"
         data-aos="fade-up"
         data-aos-duration="1000"
-        data-aos-delay="150"
+        :data-aos-delay="150 + index * 150"
       >
-        <i class="bi bi-calendar3"></i>
-        <h3>ДАТА</h3>
-        <p>
-          31 июля 2026 года,<br />
-          пятница
-        </p>
-      </div>
-
-      <div
-        class="detail-card"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-delay="300"
-      >
-        <i class="bi bi-geo-alt"></i>
-        <h3>МЕСТО</h3>
-        <p>
-          Загородный комплекс «Арман»<br />
-          Малахитовый зал
-        </p>
-      </div>
-
-      <div
-        class="detail-card"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-delay="450"
-      >
-        <i class="bi bi-camera-video"></i>
-        <h3>ДРЕСС-КОД</h3>
-        <p>
-          Нарядный,<br />
-          в тёплых оттенках
-        </p>
+        <i :class="item.icon"></i>
+        <h3>{{ item.title }}</h3>
+        <p v-html="item.text"></p>
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+import { computed } from 'vue'
+import detailsText from '@/data/details.json'
+
+const props = defineProps({
+  lang: {
+    type: String,
+    default: 'ru'
+  }
+})
+
+const t = computed(() => {
+  return detailsText[props.lang] || detailsText.ru
+})
+</script>
 
 <style scoped>
 .details {

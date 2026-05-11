@@ -1,12 +1,14 @@
 <template>
+  <RsvpModal :lang="languageStore.locale" />
   <EnvelopeIntro />
+  <LanguageIntro />
   <main class="wedding-page">
-    <HeaderSection />
-    <HeroSection />
-    <CountdownSection />
-    <DetailsSection />
-    <ProgramSection />
-    <RsvpSection />
+    <HeaderSection :lang="languageStore.locale" />
+    <HeroSection :lang="languageStore.locale" />
+    <CountdownSection :lang="languageStore.locale" />
+    <DetailsSection :lang="languageStore.locale" />
+    <ProgramSection :lang="languageStore.locale" />
+    <RsvpSection :lang="languageStore.locale" />
   </main>
 </template>
 
@@ -18,6 +20,11 @@ import CountdownSection from './components/CountdownSection.vue'
 import DetailsSection from './components/DetailsSection.vue'
 import ProgramSection from './components/ProgramSection.vue'
 import RsvpSection from './components/RsvpSection.vue'
+import RsvpModal from './modal/rsvp.vue'
+import LanguageIntro from './components/LanguageIntro.vue'
+import { useLanguageStore } from '@/stores/languageStore'
+
+const languageStore = useLanguageStore()
 </script>
 
 <style scoped>

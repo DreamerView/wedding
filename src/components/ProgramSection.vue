@@ -15,12 +15,12 @@
         data-aos-duration="1000"
         data-aos-delay="100"
       >
-        ПРОГРАММА ДНЯ
+        {{ t.title }}
       </h2>
 
       <div class="timeline">
         <div
-          v-for="(item, index) in program"
+          v-for="(item, index) in t.items"
           :key="item.time"
           class="timeline-item"
           data-aos="fade-up"
@@ -45,38 +45,19 @@
 </template>
 
 <script setup>
-const program = [
-  {
-    time: '15:30',
-    icon: 'bi bi-people',
-    title: 'СБОР ГОСТЕЙ',
-    text: 'Приветственный фуршет'
-  },
-  {
-    time: '16:00',
-    icon: 'bi bi-gem',
-    title: 'ЦЕРЕМОНИЯ',
-    text: 'Выездная церемония'
-  },
-  {
-    time: '16:30',
-    icon: 'bi bi-camera',
-    title: 'ФУРШЕТ И ФОТОСЕССИЯ',
-    text: 'Поздравления и фотографии'
-  },
-  {
-    time: '18:00',
-    icon: 'bi bi-cup-straw',
-    title: 'БАНКЕТ',
-    text: 'Поздравления, ужин и программа'
-  },
-  {
-    time: '22:30',
-    icon: 'bi bi-music-note-beamed',
-    title: 'ТОРТ И ТАНЦЫ',
-    text: 'Продолжаем веселье!'
+import { computed } from 'vue'
+import programText from '@/data/program.json'
+
+const props = defineProps({
+  lang: {
+    type: String,
+    default: 'ru'
   }
-]
+})
+
+const t = computed(() => {
+  return programText[props.lang] || programText.ru
+})
 </script>
 
 <style scoped>

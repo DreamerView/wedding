@@ -1,14 +1,12 @@
 <template>
-  <section
-    class="countdown"
-  >
+  <section class="countdown">
     <p
       class="small-text"
       data-aos="fade-up"
       data-aos-duration="900"
       data-aos-delay="150"
     >
-      ДО НАШЕГО ДНЯ
+      {{ t.title }}
     </p>
 
     <div class="countdown-grid">
@@ -20,7 +18,7 @@
         <Transition name="count-flip" mode="out-in">
           <strong :key="time.days">{{ time.days }}</strong>
         </Transition>
-        <span>ДНЯ</span>
+        <span>{{ t.days }}</span>
       </div>
 
       <div
@@ -31,7 +29,7 @@
         <Transition name="count-flip" mode="out-in">
           <strong :key="time.hours">{{ time.hours }}</strong>
         </Transition>
-        <span>ЧАСОВ</span>
+        <span>{{ t.hours }}</span>
       </div>
 
       <div
@@ -42,7 +40,7 @@
         <Transition name="count-flip" mode="out-in">
           <strong :key="time.minutes">{{ time.minutes }}</strong>
         </Transition>
-        <span>МИНУТ</span>
+        <span>{{ t.minutes }}</span>
       </div>
 
       <div
@@ -53,15 +51,28 @@
         <Transition name="count-flip" mode="out-in">
           <strong :key="time.seconds">{{ time.seconds }}</strong>
         </Transition>
-        <span>СЕКУНД</span>
+        <span>{{ t.seconds }}</span>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import AOS from 'aos'
+
+import countdownText from '@/data/countdown.json'
+
+const props = defineProps({
+  lang: {
+    type: String,
+    default: 'ru'
+  }
+})
+
+const t = computed(() => {
+  return countdownText[props.lang] || countdownText.ru
+})
 
 const targetDate = new Date('2026-07-31T00:00:00').getTime()
 
@@ -209,7 +220,6 @@ onUnmounted(() => {
   color: hsl(43, 27%, 57%);
 }
 
-/* Анимация смены цифр */
 .count-flip-enter-active,
 .count-flip-leave-active {
   transition:

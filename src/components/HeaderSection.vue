@@ -13,7 +13,7 @@
           data-aos-duration="900"
           data-aos-delay="350"
         >
-          О НАС
+          {{ t.about }}
         </a>
 
         <a
@@ -22,7 +22,7 @@
           data-aos-duration="900"
           data-aos-delay="450"
         >
-          ДЕТАЛИ
+          {{ t.details }}
         </a>
 
         <a
@@ -31,7 +31,7 @@
           data-aos-duration="900"
           data-aos-delay="550"
         >
-          ПРОГРАММА
+          {{ t.program }}
         </a>
       </div>
 
@@ -53,12 +53,28 @@
           data-aos-duration="900"
           data-aos-delay="750"
         >
-          ПОДТВЕРДИТЬ УЧАСТИЕ
+          {{ t.rsvp }}
         </a>
       </div>
     </nav>
   </header>
 </template>
+
+<script setup>
+import { computed } from 'vue'
+import headerText from '@/data/header.json'
+
+const props = defineProps({
+  lang: {
+    type: String,
+    default: 'ru'
+  }
+})
+
+const t = computed(() => {
+  return headerText[props.lang] || headerText.ru
+})
+</script>
 
 <style scoped>
 .site-header {

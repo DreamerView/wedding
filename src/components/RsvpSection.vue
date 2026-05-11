@@ -4,28 +4,43 @@
     <div class="rsvp-overlay"></div>
 
     <div class="rsvp-content" data-aos="fade-up">
-      <p class="section-label">RSVP</p>
+      <p class="section-label">{{ t.label }}</p>
 
-      <h2>ПОДТВЕРДИТЬ УЧАСТИЕ</h2>
+      <h2>{{ t.title }}</h2>
 
-      <p class="description">
-        Пожалуйста, подтвердите своё участие<br />
-        до 1 июля 2026 года
-      </p>
+      <p class="description" v-html="t.description"></p>
 
-      <button type="button" class="rsvp-btn">
-        ПОДТВЕРДИТЬ
+      <button 
+        type="button" 
+        class="rsvp-btn"
+        data-bs-toggle="modal"
+        data-bs-target="#rsvpModal"
+      >
+        {{ t.button }}
       </button>
 
       <div class="arrow">⌄</div>
 
-      <p class="final-text">
-        МЫ БУДЕМ РАДЫ РАЗДЕЛИТЬ<br />
-        ЭТОТ ДЕНЬ С ВАМИ!
-      </p>
+      <p class="final-text" v-html="t.finalText"></p>
     </div>
   </section>
 </template>
+
+<script setup>
+import { computed } from 'vue'
+import rsvpText from '@/data/rsvp-section.json'
+
+const props = defineProps({
+  lang: {
+    type: String,
+    default: 'ru'
+  }
+})
+
+const t = computed(() => {
+  return rsvpText[props.lang] || rsvpText.ru
+})
+</script>
 
 <style scoped>
 .rsvp {

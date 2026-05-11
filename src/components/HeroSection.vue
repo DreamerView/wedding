@@ -16,25 +16,23 @@
         data-aos="fade-up"
         data-aos-delay="150"
       >
-        ДОРОГИЕ ДРУЗЬЯ!
+        {{ t.smallText }}
       </p>
 
       <p
         class="invite-text"
         data-aos="fade-up"
         data-aos-delay="350"
-      >
-        МЫ РАДЫ ПРИГЛАСИТЬ ВАС<br />
-        НА НАШУ СВАДЬБУ
-      </p>
+        v-html="t.inviteText"
+      ></p>
 
       <h1
         data-aos="fade-up"
         data-aos-delay="600"
       >
-        ТЕМІРХАН
+        {{ t.groom }}
         <span>&</span>
-        ЖАНСАЯ
+        {{ t.bride }}
       </h1>
 
       <p
@@ -42,7 +40,7 @@
         data-aos="fade-up"
         data-aos-delay="850"
       >
-        31 ИЮЛЯ 2026
+        {{ t.date }}
       </p>
 
       <div
@@ -57,8 +55,21 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import AOS from 'aos'
+
+import heroText from '@/data/hero.json'
+
+const props = defineProps({
+  lang: {
+    type: String,
+    default: 'ru'
+  }
+})
+
+const t = computed(() => {
+  return heroText[props.lang] || heroText.ru
+})
 
 const heroRef = ref(null)
 const imageLoaded = ref(false)
