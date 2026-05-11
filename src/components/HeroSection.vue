@@ -26,14 +26,16 @@
         v-html="t.inviteText"
       ></p>
 
-      <h1
+      <div
         data-aos="fade-up"
         data-aos-delay="600"
       >
-        {{ t.groom }}
-        <span>&</span>
-        {{ t.bride }}
-      </h1>
+        <h1 class="hero-title">
+          {{ t.groom }}
+          <span>&</span>
+          {{ t.bride }}
+        </h1>
+      </div>
 
       <p
         class="date"
@@ -206,12 +208,33 @@ h1 {
   font-size: clamp(44px, 7vw, 76px);
   line-height: 1.08;
   letter-spacing: 4px;
-  color: #a27a45;
   font-family: "Cormorant Garamond", serif;
-  text-shadow: 0 8px 28px rgba(162, 122, 69, 0.12);
 }
 
-h1 span {
+.hero-title {
+  color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    #8f6634 0%,
+    #a27a45 18%,
+    #d8b67a 38%,
+    #f2dca6 50%,
+    #c89b58 62%,
+    #a27a45 82%,
+    #8f6634 100%
+  );
+  background-size: 240% auto;
+  background-position: 0% center;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow:
+    0 8px 28px rgba(162, 122, 69, 0.12),
+    0 0 18px rgba(216, 182, 122, 0.08);
+  animation: goldShimmer 8s ease-in-out infinite;
+  will-change: background-position;
+}
+
+.hero-title span {
   font-size: 42px;
   line-height: 1;
   font-style: italic;
@@ -231,6 +254,20 @@ h1 span {
   color: #a27a45;
   opacity: 0.75;
   animation: arrowFloat 1.8s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: 0% center;
+  }
+
+  50% {
+    background-position: 100% center;
+  }
+
+  100% {
+    background-position: 0% center;
+  }
 }
 
 @keyframes arrowFloat {
@@ -278,7 +315,7 @@ h1 span {
     letter-spacing: 3px;
   }
 
-  h1 span {
+  .hero-title span {
     font-size: 36px;
   }
 
