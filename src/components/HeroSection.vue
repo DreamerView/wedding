@@ -293,11 +293,11 @@ h1 {
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 650px;
+    min-height: 100dvh;
   }
 
   .bg-image {
-    background-position: center top;
+    background-position: center bottom;
   }
 
   .hero-content {
