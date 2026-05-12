@@ -1,8 +1,8 @@
 <template>
   <section id="invitation" class="invitation">
     <div class="bg-names">
-      <span>TEMIRKHAN</span>
-      <span>ZHANSAYA</span>
+      <span>{{ t.bgNames.groom }}</span>
+      <span>{{ t.bgNames.bride }}</span>
     </div>
 
     <div class="gold-orb orb-one"></div>
@@ -11,40 +11,31 @@
     <div class="invitation-wrap">
       <div class="visual-side" data-aos="fade-right">
         <div class="date-box">
-          <span>31</span>
-          <small>07 / 2026</small>
+          <span>{{ t.date.day }}</span>
+          <small>{{ t.date.monthYear }}</small>
         </div>
 
         <div class="vertical-text">
-          <span>WEDDING DAY</span>
+          <span>{{ t.verticalText }}</span>
         </div>
       </div>
 
       <div class="text-panel" data-aos="fade-up">
         <div class="panel-top">
           <span></span>
-          <p>ТОЙҒА ШАҚЫРУ</p>
+          <p>{{ t.label }}</p>
         </div>
 
-        <h2>
-          Біздің қуанышымызға<br />
-          ортақ болыңыз
-        </h2>
+        <h2>{{ t.title }}</h2>
 
         <p class="invite-text">
-          Сіз(дер)ді ұлымыз
-          <strong>Темірхан</strong>
-          мен келініміз
-          <strong>Жансаяның</strong>
-          шаңырақ көтеру тойына арналған
-          салтанатты ақ дастарханымыздың
-          қадірлі қонағы болуға шақырамыз.
+          {{ t.text }}
         </p>
 
         <div class="signature">
           <div>
-            <small>Той иелері</small>
-            <p>Руслан — Ләйлә</p>
+            <small>{{ t.hostsLabel }}</small>
+            <p>{{ t.hosts }}</p>
           </div>
 
           <i>✦</i>
@@ -53,6 +44,22 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import { computed } from 'vue'
+import invitationText from '@/data/invitation.json'
+
+const props = defineProps({
+  lang: {
+    type: String,
+    default: 'kk'
+  }
+})
+
+const t = computed(() => {
+  return invitationText[props.lang] || invitationText.kk
+})
+</script>
 
 <style scoped>
 .invitation {
@@ -279,11 +286,6 @@ h2 {
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(24px, 3.2vw, 33px);
   line-height: 1.42;
-}
-
-.invite-text strong {
-  color: #98662c;
-  font-weight: 600;
 }
 
 .signature {
