@@ -134,7 +134,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .hero {
   position: relative;
-  min-height: 720px;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background: #f4f0ec;
@@ -144,20 +144,61 @@ onBeforeUnmount(() => {
 
 .bg-image {
   position: absolute;
-  inset: 0;
+  inset: -30px;
   background-size: cover;
   background-position: center top;
   opacity: 0;
   z-index: -3;
-  transform: scale(1.04);
+
+  transform: scale(1.08);
+  filter: brightness(1.02) contrast(1.02) saturate(1.02);
+
   transition:
     opacity 1.4s ease,
-    transform 3.2s ease;
+    transform 2.5s ease,
+    filter 2.5s ease;
+
+  will-change: transform, opacity, filter;
 }
 
 .bg-image.loaded {
   opacity: 1;
-  transform: scale(1);
+  animation: posterCinematic 18s ease-in-out infinite;
+}
+
+.bg-image.loaded::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 36%,
+      rgba(255, 232, 180, 0.13) 48%,
+      transparent 62%,
+      transparent 100%
+    );
+  opacity: 0;
+  transform: translateX(-45%);
+  animation: posterShine 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.bg-image.loaded::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(255, 232, 190, 0.2),
+      rgba(255, 232, 190, 0.06) 34%,
+      transparent 68%
+    );
+  opacity: 0.45;
+  animation: posterBreathLight 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .overlay {
@@ -165,10 +206,16 @@ onBeforeUnmount(() => {
   inset: 0;
   z-index: -2;
   background:
+    linear-gradient(
+      to bottom,
+      rgba(244, 240, 236, 0.05),
+      rgba(244, 240, 236, 0.13) 44%,
+      rgba(244, 240, 236, 0.34) 100%
+    ),
     radial-gradient(
       circle at center,
-      rgba(244, 240, 236, 0.08) 0%,
-      rgba(244, 240, 236, 0.2) 48%,
+      rgba(244, 240, 236, 0.06) 0%,
+      rgba(244, 240, 236, 0.18) 48%,
       rgba(244, 240, 236, 0.38) 100%
     );
 }
@@ -256,6 +303,76 @@ h1 {
   animation: arrowFloat 1.8s ease-in-out infinite;
 }
 
+@keyframes posterCinematic {
+  0% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+    filter: brightness(1.02) contrast(1.02) saturate(1.02);
+  }
+
+  25% {
+    transform: scale(1.09) translate3d(-10px, -8px, 0);
+    filter: brightness(1.055) contrast(1.025) saturate(1.04);
+  }
+
+  50% {
+    transform: scale(1.075) translate3d(8px, 6px, 0);
+    filter: brightness(1.035) contrast(1.02) saturate(1.03);
+  }
+
+  75% {
+    transform: scale(1.095) translate3d(10px, -6px, 0);
+    filter: brightness(1.05) contrast(1.025) saturate(1.04);
+  }
+
+  100% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+    filter: brightness(1.02) contrast(1.02) saturate(1.02);
+  }
+}
+
+@keyframes posterShine {
+  0% {
+    opacity: 0;
+    transform: translateX(-45%);
+  }
+
+  35% {
+    opacity: 0;
+    transform: translateX(-45%);
+  }
+
+  52% {
+    opacity: 0.75;
+  }
+
+  75% {
+    opacity: 0;
+    transform: translateX(45%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(45%);
+  }
+}
+
+@keyframes posterBreathLight {
+  0% {
+    opacity: 0.28;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.62;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 0.28;
+    transform: scale(1);
+  }
+}
+
 @keyframes goldShimmer {
   0% {
     background-position: 0% center;
@@ -297,7 +414,34 @@ h1 {
   }
 
   .bg-image {
+    inset: -24px;
     background-position: center bottom;
+  }
+
+  .bg-image.loaded {
+    animation: posterCinematicMobile 16s ease-in-out infinite;
+  }
+
+  .bg-image.loaded::before {
+    background:
+      linear-gradient(
+        115deg,
+        transparent 0%,
+        transparent 34%,
+        rgba(255, 232, 180, 0.16) 48%,
+        transparent 64%,
+        transparent 100%
+      );
+  }
+
+  .bg-image.loaded::after {
+    background:
+      radial-gradient(
+        circle at 50% 48%,
+        rgba(255, 232, 190, 0.22),
+        rgba(255, 232, 190, 0.07) 36%,
+        transparent 70%
+      );
   }
 
   .hero-content {
@@ -322,6 +466,38 @@ h1 {
   .date {
     margin-top: 44px;
     font-size: 15px;
+  }
+}
+
+@keyframes posterCinematicMobile {
+  0% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+    filter: brightness(1.02) contrast(1.02) saturate(1.02);
+  }
+
+  30% {
+    transform: scale(1.095) translate3d(-7px, -10px, 0);
+    filter: brightness(1.055) contrast(1.025) saturate(1.04);
+  }
+
+  60% {
+    transform: scale(1.075) translate3d(6px, 8px, 0);
+    filter: brightness(1.035) contrast(1.02) saturate(1.03);
+  }
+
+  100% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+    filter: brightness(1.02) contrast(1.02) saturate(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-image.loaded,
+  .bg-image.loaded::before,
+  .bg-image.loaded::after,
+  .hero-title,
+  .arrow {
+    animation: none;
   }
 }
 </style>
