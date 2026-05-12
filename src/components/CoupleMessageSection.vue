@@ -1,7 +1,7 @@
 <template>
   <section id="couple-message" class="couple-message">
     <div class="bg-title">
-      <span>WITH LOVE</span>
+      <span>{{ t.bgTitle }}</span>
     </div>
 
     <div class="gold-glow glow-one"></div>
@@ -11,33 +11,25 @@
       <div class="message-side" data-aos="fade-right">
         <div class="small-line">
           <span></span>
-          <p>ҚҰРМЕТПЕН</p>
+          <p>{{ t.label }}</p>
         </div>
 
         <h2>
-          Құрметті<br />
-          жақыным!
+          {{ titleLineOne }}<br />
+          {{ titleLineTwo }}
         </h2>
 
         <div class="message-text">
-          <p>
-            Жуырда біздің өміріміздегі ең бақытты
-            күндердің бірі болмақ!
-          </p>
-
-          <p>
-            Сол бақытты күнде сіз(дер)ді жанымыздан
-            көріп, қуанышымызбен бөліскіміз келеді!
-          </p>
-
-          <p>
-            Тойымыздың салтанатты дастарханында
-            сіз(дер)ді күтеміз!
+          <p
+            v-for="message in t.messages"
+            :key="message"
+          >
+            {{ message }}
           </p>
         </div>
 
         <div class="respect">
-          <span>Құрметпен</span>
+          <span>{{ t.respect }}</span>
           <i>✦</i>
         </div>
       </div>
@@ -46,21 +38,21 @@
         <div class="photo-card groom-card">
           <div class="photo">
             <img
-              src="https://placehold.co/640x760/f4eadb/9f7336?text=Temirkhan"
-              alt="Темірхан"
+              :src="t.groom.image"
+              :alt="t.groom.alt"
             />
           </div>
 
           <div class="person-info">
-            <h3>Темірхан</h3>
+            <h3>{{ t.groom.name }}</h3>
 
             <a
-              href="https://instagram.com/temirkhan.onyx"
+              :href="t.groom.instagramUrl"
               target="_blank"
               rel="noopener noreferrer"
             >
               <i class="bi bi-instagram"></i>
-              @temirkhan.onyx
+              {{ t.groom.instagram }}
             </a>
           </div>
         </div>
@@ -68,21 +60,21 @@
         <div class="photo-card bride-card">
           <div class="photo">
             <img
-              src="https://placehold.co/640x760/f4eadb/9f7336?text=Zhansaya"
-              alt="Жансая"
+              :src="t.bride.image"
+              :alt="t.bride.alt"
             />
           </div>
 
           <div class="person-info">
-            <h3>Жансая</h3>
+            <h3>{{ t.bride.name }}</h3>
 
             <a
-              href="https://instagram.com/"
+              :href="t.bride.instagramUrl"
               target="_blank"
               rel="noopener noreferrer"
             >
               <i class="bi bi-instagram"></i>
-              @zhansaya
+              {{ t.bride.instagram }}
             </a>
           </div>
         </div>
@@ -90,6 +82,34 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import { computed } from 'vue'
+import coupleMessageText from '@/data/couple-message.json'
+
+const props = defineProps({
+  lang: {
+    type: String,
+    default: 'kk'
+  }
+})
+
+const t = computed(() => {
+  return coupleMessageText[props.lang] || coupleMessageText.kk
+})
+
+const titleLines = computed(() => {
+  return t.value.title.split('\n')
+})
+
+const titleLineOne = computed(() => {
+  return titleLines.value[0] || ''
+})
+
+const titleLineTwo = computed(() => {
+  return titleLines.value[1] || ''
+})
+</script>
 
 <style scoped>
 .couple-message {

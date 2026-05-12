@@ -1,0 +1,52 @@
+{
+  "kk": {
+    "bgTitle": "WITH LOVE",
+    "label": "ҚҰРМЕТПЕН",
+    "title": "Құрметті\nжақыным!",
+    "messages": [
+      "Жуырда біздің өміріміздегі ең бақытты күндердің бірі болмақ!",
+      "Сол бақытты күнде сіз(дер)ді жанымыздан көріп, қуанышымызбен бөліскіміз келеді!",
+      "Тойымыздың салтанатты дастарханында сіз(дер)ді күтеміз!"
+    ],
+    "respect": "Құрметпен",
+    "groom": {
+      "name": "Темірхан",
+      "instagram": "@temirkhan.onyx",
+      "instagramUrl": "https://instagram.com/temirkhan.onyx",
+      "image": "https://placehold.co/640x760/f4eadb/9f7336?text=Temirkhan",
+      "alt": "Темірхан"
+    },
+    "bride": {
+      "name": "Жансая",
+      "instagram": "@zhansaya",
+      "instagramUrl": "https://instagram.com/",
+      "image": "https://placehold.co/640x760/f4eadb/9f7336?text=Zhansaya",
+      "alt": "Жансая"
+    }
+  },
+  "ru": {
+    "bgTitle": "WITH LOVE",
+    "label": "С УВАЖЕНИЕМ",
+    "title": "Дорогие\nблизкие!",
+    "messages": [
+      "Совсем скоро наступит один из самых счастливых дней в нашей жизни!",
+      "В этот особенный день мы хотим видеть вас рядом и разделить с вами нашу радость!",
+      "Будем рады видеть вас за нашим праздничным свадебным дастарханом!"
+    ],
+    "respect": "С уважением",
+    "groom": {
+      "name": "Темирхан",
+      "instagram": "@temirkhan.onyx",
+      "instagramUrl": "https://instagram.com/temirkhan.onyx",
+      "image": "https://placehold.co/640x760/f4eadb/9f7336?text=Temirkhan",
+      "alt": "Темирхан"
+    },
+    "bride": {
+      "name": "Жансая",
+      "instagram": "@zhansaya",
+      "instagramUrl": "https://instagram.com/",
+      "image": "https://placehold.co/640x760/f4eadb/9f7336?text=Zhansaya",
+      "alt": "Жансая"
+    }
+  }
+}
