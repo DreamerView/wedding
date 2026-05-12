@@ -6,6 +6,7 @@
     <HeaderSection :lang="languageStore.locale" />
     <HeroSection :lang="languageStore.locale" />
     <CountdownSection :lang="languageStore.locale" />
+    <InvitationSection :lang="languageStore.locale" />
     <DetailsSection :lang="languageStore.locale" />
     <ProgramSection :lang="languageStore.locale" />
     <RsvpSection :lang="languageStore.locale" />
@@ -23,6 +24,7 @@ import RsvpSection from './components/RsvpSection.vue'
 import RsvpModal from './modal/rsvp.vue'
 import LanguageIntro from './components/LanguageIntro.vue'
 import { useLanguageStore } from '@/stores/languageStore'
+import InvitationSection from './components/InvitationSection.vue'
 
 const languageStore = useLanguageStore()
 </script>
