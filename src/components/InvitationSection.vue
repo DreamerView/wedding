@@ -21,13 +21,24 @@
         data-aos-duration="1000"
         data-aos-delay="250"
       >
-        <div class="date-box">
-          <span>{{ t.date.day }}</span>
-          <small>{{ t.date.monthYear }}</small>
-        </div>
+        <div class="date-card">
+          <div class="date-weekday">
+            {{ t.date.week }}
+          </div>
 
-        <div class="vertical-text">
-          <span>{{ t.verticalText }}</span>
+          <div class="date-number">
+            {{ t.date.day }}
+          </div>
+
+          <div class="date-month">
+             {{ t.date.month }} 2026
+          </div>
+
+          <div class="date-line"></div>
+
+          <div class="date-caption">
+            {{ t.verticalText }}
+          </div>
         </div>
       </div>
 
@@ -139,7 +150,7 @@ const t = computed(() => {
 }
 
 .orb-two {
-  width: 340px;
+  width: 420px;
   height: 340px;
   right: -120px;
   bottom: -120px;
@@ -150,80 +161,121 @@ const t = computed(() => {
   width: min(1080px, 100%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 330px 1fr;
+  grid-template-columns: 340px 1fr;
   gap: 54px;
   align-items: center;
 }
 
 .visual-side {
-  min-height: 440px;
   position: relative;
-  border-radius: 160px 160px 24px 24px;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  min-height: 420px;
+  padding: 42px 26px 36px;
+  border-radius: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background:
-    linear-gradient(180deg, rgba(255, 250, 240, 0.12), rgba(255, 250, 240, 0.03));
-  border: 1px solid rgba(216, 182, 122, 0.34);
+    radial-gradient(circle at 50% 18%, rgba(216, 182, 122, 0.22), transparent 36%),
+    linear-gradient(180deg, rgba(255, 250, 240, 0.13), rgba(255, 250, 240, 0.035));
+  border: 1px solid rgba(216, 182, 122, 0.38);
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.28),
+    0 34px 90px rgba(0, 0, 0, 0.32),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
   overflow: hidden;
 }
 
-.visual-side::before {
+.date-card::before {
   content: "";
   position: absolute;
-  inset: 18px;
-  border-radius: 140px 140px 18px 18px;
+  inset: 16px;
+  border-radius: 32px;
   border: 1px solid rgba(216, 182, 122, 0.18);
+  pointer-events: none;
 }
 
-.visual-side::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at top, rgba(216, 182, 122, 0.22), transparent 42%),
-    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.22));
-}
-
-.date-box {
+.date-card::after {
+  content: "T&J";
   position: absolute;
   left: 50%;
-  top: 58%;
-  z-index: 2;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #f4e5c7;
-}
-
-.date-box span {
-  display: block;
+  top: 50%;
+  transform: translate(-50%, -47%);
+  color: rgba(255, 241, 208, 0.045);
   font-family: "Cormorant Garamond", serif;
-  font-size: 126px;
-  font-weight: 400;
-  line-height: 0.72;
+  font-size: 118px;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
-.date-box small {
-  display: block;
-  margin-top: 22px;
+.date-weekday {
+  position: relative;
+  z-index: 2;
+  /* margin-bottom: 22px; */
   color: #d8b67a;
   font-size: 13px;
-  letter-spacing: 5px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
 }
 
-.vertical-text {
-  position: absolute;
-  left: 28px;
-  bottom: 32px;
+.date-number {
+  position: relative;
   z-index: 2;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  color: #f4e5c7;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(132px, 15vw, 178px);
+  font-weight: 400;
+  line-height: 0.72;
+  letter-spacing: -6px;
+  text-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.28),
+    0 0 34px rgba(216, 182, 122, 0.22);
+  animation: dateGlow 3.4s ease-in-out infinite;
+  margin-bottom:1.5rem;
 }
 
-.vertical-text span {
+.date-month {
+  position: relative;
+  z-index: 2;
+  margin-top: 34px;
+  color: #d8b67a;
+  font-size: 14px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.date-line {
+  position: relative;
+  z-index: 2;
+  width: 82px;
+  height: 1px;
+  margin: 28px 0 20px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(216, 182, 122, 0.85),
+    transparent
+  );
+}
+
+.date-caption {
+  position: relative;
+  z-index: 2;
   color: rgba(240, 227, 207, 0.62);
   font-size: 11px;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .text-panel {
@@ -376,6 +428,23 @@ h2 {
   }
 }
 
+@keyframes dateGlow {
+  0%,
+  100% {
+    transform: scale(1);
+    text-shadow:
+      0 18px 42px rgba(0, 0, 0, 0.28),
+      0 0 34px rgba(216, 182, 122, 0.22);
+  }
+
+  50% {
+    transform: scale(1.025);
+    text-shadow:
+      0 22px 54px rgba(0, 0, 0, 0.34),
+      0 0 48px rgba(216, 182, 122, 0.34);
+  }
+}
+
 @media (max-width: 900px) {
   .invitation {
     padding: 78px 18px;
@@ -387,29 +456,16 @@ h2 {
   }
 
   .visual-side {
-    min-height: 210px;
-    border-radius: 28px;
+    min-height: auto;
   }
 
-  .visual-side::before {
-    border-radius: 20px;
+  .date-card {
+    max-width: 100%;
+    min-height: 300px;
   }
 
-  .date-box {
-    top: 50%;
-  }
-
-  .date-box span {
-    font-size: 82px;
-  }
-
-  .date-box small {
-    margin-top: 14px;
-  }
-
-  .vertical-text {
-    left: 20px;
-    bottom: 22px;
+  .date-number {
+    font-size: 128px;
   }
 
   .text-panel {
@@ -428,12 +484,41 @@ h2 {
     letter-spacing: 4px;
   }
 
-  .visual-side {
-    min-height: 180px;
+  .date-card {
+    min-height: 270px;
+    padding: 34px 20px 30px;
+    border-radius: 32px;
   }
 
-  .date-box span {
-    font-size: 72px;
+  .date-card::before {
+    inset: 12px;
+    border-radius: 24px;
+  }
+
+  .date-weekday {
+    margin-bottom: 18px;
+    font-size: 11px;
+    letter-spacing: 5px;
+  }
+
+  .date-number {
+    font-size: 112px;
+    letter-spacing: -4px;
+  }
+
+  .date-month {
+    margin-top: 26px;
+    font-size: 12px;
+    letter-spacing: 4px;
+  }
+
+  .date-line {
+    margin: 22px 0 16px;
+  }
+
+  .date-caption {
+    font-size: 10px;
+    letter-spacing: 3px;
   }
 
   .text-panel {

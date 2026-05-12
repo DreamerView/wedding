@@ -40,6 +40,7 @@
             <img
               :src="t.groom.image"
               :alt="t.groom.alt"
+              loading="lazy"
             />
           </div>
 
@@ -62,6 +63,7 @@
             <img
               :src="t.bride.image"
               :alt="t.bride.alt"
+              loading="lazy"
             />
           </div>
 

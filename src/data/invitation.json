@@ -6,6 +6,8 @@
     },
     "date": {
       "day": "31",
+      "week":"ПЯТНИЦА",
+      "month":"ИЮЛЯ",
       "monthYear": "07 / 2026"
     },
     "verticalText": "WEDDING DAY",
@@ -22,6 +24,8 @@
     },
     "date": {
       "day": "31",
+      "week":"ЖҰМА",
+      "month":"ШІЛДЕ",
       "monthYear": "07 / 2026"
     },
     "verticalText": "WEDDING DAY",
