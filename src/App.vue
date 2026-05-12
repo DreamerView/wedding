@@ -9,6 +9,7 @@
     <InvitationSection :lang="languageStore.locale" />
     <DetailsSection :lang="languageStore.locale" />
     <ProgramSection :lang="languageStore.locale" />
+    <CoupleMessageSection :lang="languageStore.locale" />
     <RsvpSection :lang="languageStore.locale" />
   </main>
 </template>
@@ -25,6 +26,7 @@ import RsvpModal from './modal/rsvp.vue'
 import LanguageIntro from './components/LanguageIntro.vue'
 import { useLanguageStore } from '@/stores/languageStore'
 import InvitationSection from './components/InvitationSection.vue'
+import CoupleMessageSection from './components/CoupleMessageSection.vue'
 
 const languageStore = useLanguageStore()
 </script>
