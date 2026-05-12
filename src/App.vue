@@ -8,6 +8,7 @@
     <CountdownSection :lang="languageStore.locale" />
     <InvitationSection :lang="languageStore.locale" />
     <LocationSection :lang="languageStore.locale" />
+    <DressCodeSection :lang="languageStore.locale" />
     <ProgramSection :lang="languageStore.locale" />
     <CoupleMessageSection :lang="languageStore.locale" />
     <RsvpSection :lang="languageStore.locale" />
@@ -27,6 +28,7 @@ import { useLanguageStore } from '@/stores/languageStore'
 import InvitationSection from './components/InvitationSection.vue'
 import CoupleMessageSection from './components/CoupleMessageSection.vue'
 import LocationSection from './components/LocationSection.vue'
+import DressCodeSection from './components/DressCodeSection.vue'
 
 const languageStore = useLanguageStore()
 </script>
