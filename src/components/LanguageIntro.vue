@@ -10,7 +10,7 @@
           <button type="button" @click="selectLanguage('kk')">
             Қазақша
           </button>
-          
+
           <button type="button" @click="selectLanguage('ru')">
             Русский
           </button>
@@ -21,18 +21,35 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
+import AOS from 'aos'
 import { useLanguageStore } from '@/stores/languageStore'
 
 const languageStore = useLanguageStore()
 
 const visible = ref(true)
 
-const selectLanguage = (lang) => {
-  languageStore.setLocale(lang)
+const initAos = async () => {
+  await nextTick()
 
   setTimeout(() => {
+    AOS.init({
+      duration: 900,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 80,
+    })
+
+    AOS.refreshHard()
+  }, 650)
+}
+
+const selectLanguage = async (lang) => {
+  languageStore.setLocale(lang)
+
+  setTimeout(async () => {
     visible.value = false
+    await initAos()
   }, 250)
 }
 </script>

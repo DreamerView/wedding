@@ -8,17 +8,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 import 'aos/dist/aos.css'
-import AOS from 'aos'
 
 const app = createApp(App)
 
 app.use(createPinia())
-
 app.mount('#app')
-
-AOS.init({
-  duration: 900,
-  easing: 'ease-out-cubic',
-  once: true,
-  offset: 80,
-})
