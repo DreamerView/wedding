@@ -5,7 +5,8 @@
       "title": "Той өтетін орын",
       "text": "Сіздерді келесі мекенжайда күтеміз:",
       "address": "Dos, банкет залы",
-      "iframeUrl": "/maps/dos-2gis.html"
+      "iframeUrl": "/maps/dos-2gis.html",
+      "gisUrl":"https://go.2gis.com/xTgCf"
     }
   },
   "ru": {
@@ -14,7 +15,8 @@
       "title": "Место проведения",
       "text": "Будем ждать вас по адресу:",
       "address": "Dos, банкетный зал",
-      "iframeUrl": "/maps/dos-2gis.html"
+      "iframeUrl": "/maps/dos-2gis.html",
+      "gisUrl":"https://go.2gis.com/xTgCf"
     }
   }
 }

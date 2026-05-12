@@ -52,7 +52,7 @@
         <a
           v-if="t.map.iframeUrl"
           class="map-btn"
-          :href="t.map.iframeUrl"
+          :href="t.map.gisUrl"
           target="_blank"
           rel="noopener noreferrer"
         >
