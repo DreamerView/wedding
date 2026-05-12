@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dos 2GIS Map</title>
+
+    <style>
+      html,
+      body,
+      #map {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: #ead8ba;
+      }
+
+      .leaflet-control-attribution {
+        display: none !important;
+      }
+
+      .dg-popup__container {
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="map"></div>
+
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+
+    <script>
+      const lat = 49.803358346425156
+      const lon = 73.14602851867677
+
+      DG.then(function () {
+        const map = DG.map('map', {
+          center: [lat, lon],
+          zoom: 16,
+          fullscreenControl: false,
+          zoomControl: false,
+          scrollWheelZoom: false
+        })
+
+        DG.marker([lat, lon])
+          .addTo(map)
+          .bindPopup('Dos, банкетный зал')
+          .openPopup()
+      })
+    </script>
+  </body>
+</html>
