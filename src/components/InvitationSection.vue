@@ -1,5 +1,11 @@
 <template>
-  <section id="invitation" class="invitation">
+  <section
+    id="invitation"
+    class="invitation"
+    data-aos="fade-up"
+    data-aos-duration="900"
+    data-aos-delay="100"
+  >
     <div class="bg-names">
       <span>{{ t.bgNames.groom }}</span>
       <span>{{ t.bgNames.bride }}</span>
@@ -9,7 +15,12 @@
     <div class="gold-orb orb-two"></div>
 
     <div class="invitation-wrap">
-      <div class="visual-side" data-aos="fade-right">
+      <div
+        class="visual-side"
+        data-aos="fade-right"
+        data-aos-duration="1000"
+        data-aos-delay="250"
+      >
         <div class="date-box">
           <span>{{ t.date.day }}</span>
           <small>{{ t.date.monthYear }}</small>
@@ -20,7 +31,12 @@
         </div>
       </div>
 
-      <div class="text-panel" data-aos="fade-up">
+      <div
+        class="text-panel"
+        data-aos="fade-left"
+        data-aos-duration="1000"
+        data-aos-delay="350"
+      >
         <div class="panel-top">
           <span></span>
           <p>{{ t.label }}</p>
@@ -112,6 +128,7 @@ const t = computed(() => {
   filter: blur(38px);
   z-index: -2;
   animation: orbMove 8s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .orb-one {
